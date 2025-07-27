@@ -1,5 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# nocodb-table
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+本项目是一个基于vue3+vite+element-plus+nocodb-sdk的简单网页项目，用于将nocodb特定表/视图转换为独立网页，主要用于特定样式的iframe嵌入。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 特点
+
+1. apiUrl、viewId、xcToken可基于配置文件配置
+2. dark、light两种主题可基于配置文件配置
+3. 分页大小可基于配置文件配置
+4. table字段基于meta数据动态构建
+
+## 注意
+
+1. 本项目为单页面应用
+2. 本项目并未考虑token安全性
