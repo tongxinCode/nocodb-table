@@ -1,6 +1,6 @@
 # nocodb-table
 
-本项目是一个基于vue3+vite+element-plus+nocodb-sdk的简单网页项目，用于将nocodb特定表/视图转换为独立网页，主要用于特定样式的iframe嵌入。
+本项目是一个基于vue3+vite+element-plus+axios的简单网页项目，用于将nocodb特定表/视图转换为独立网页，主要用于特定样式的iframe嵌入。
 
 ## 特点
 
