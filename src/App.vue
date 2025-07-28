@@ -8,11 +8,12 @@
       :fit="true"
     >
       <el-table-column
-        v-for="col in columns"
+        v-for="(col, index) in columns"
         :key="col.fieldName"
         :prop="col.fieldName"
         :label="col.title"
         :min-width="120"
+        :align="leftAlign.includes(index) ? 'left' : 'center'"
         show-overflow-tooltip
       />
     </el-table>
@@ -43,6 +44,7 @@ const pageSize = ref(20);
 const theme = ref<'dark' | 'light'>('light');
 const orderBy = ref<number>(0);
 const order = ref<'ascending' | 'descending'>('ascending');
+const leftAlign = ref<number[]>([]);
 
 function handleSizeChange(val: number) {
   pageSize.value = val;
@@ -81,6 +83,7 @@ async function init() {
   theme.value = config.theme || 'light';
   orderBy.value = config.orderBy || 0;
   order.value = config.order || 'ascending';
+  leftAlign.value = config.leftAlign || [];
   await fetchMeta(instance, config);
   await fetchRecords(instance, config);
 }
@@ -103,5 +106,9 @@ onMounted(init);
 
   line-height: 1.5;
   font-weight: 400;
+}
+
+:deep(.el-table__header) th {
+  text-align: center !important;
 }
 </style>

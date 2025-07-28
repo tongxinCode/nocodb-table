@@ -6,5 +6,6 @@
     "theme": "light",
     "pageSize": 10,
     "orderBy": 0,
-    "order": "descending"
+    "order": "descending",
+    "leftAlign": [2, 3, 4]
 }
