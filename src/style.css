@@ -24,6 +24,29 @@ a:hover {
 
 body {
   margin: 0;
+body, html, #app {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+:root[data-theme='light'] {
+  --bg-color: #fff;
+  --text-color: #222;
+}
+:root[data-theme='dark'] {
+  --bg-color: #181818;
+  --text-color: #eee;
+}
   display: flex;
   place-items: center;
   min-width: 320px;

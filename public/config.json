@@ -1,5 +1,6 @@
 {
-    "apiUrl": "/api/v2/tables/mx86u5kfrdjqxev/records",
+    "baseUrl": "/api/v2",
+    "tableId": "mx86u5kfrdjqxev",
     "viewId": "vwvl36z8xxucgggr",
     "xcToken": "Ks_kgD452GqQYgqgR2mic22g2PlhHp8f4qyM_fQA",
     "theme": "light",

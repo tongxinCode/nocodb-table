@@ -4,7 +4,7 @@
 
 ## 特点
 
-1. apiUrl、viewId、xcToken可基于配置文件配置
+1. baseUrl、tableId、viewId、xcToken可基于配置文件配置
 2. dark、light两种主题可基于配置文件配置
 3. 分页大小可基于配置文件配置
 4. table字段基于meta数据动态构建 
