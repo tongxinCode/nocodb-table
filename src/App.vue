@@ -14,8 +14,11 @@
         :label="col.title"
         :min-width="120"
         :align="leftAlign.includes(index) ? 'left' : 'center'"
-        show-overflow-tooltip
-      />
+      >
+        <template #default="scope">
+          <span class="cell-content">{{ scope.row[col.fieldName] }}</span>
+        </template>
+      </el-table-column>
     </el-table>
     <el-pagination
       v-if="total > pageSize"
@@ -110,5 +113,11 @@ onMounted(init);
 
 :deep(.el-table__header) th {
   text-align: center !important;
+}
+
+.cell-content {
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.5;
 }
 </style>
