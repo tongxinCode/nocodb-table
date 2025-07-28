@@ -4,5 +4,7 @@
     "viewId": "vwvl36z8xxucgggr",
     "xcToken": "Ks_kgD452GqQYgqgR2mic22g2PlhHp8f4qyM_fQA",
     "theme": "light",
-    "pageSize": 10
+    "pageSize": 10,
+    "orderBy": 0,
+    "order": "descending"
 }

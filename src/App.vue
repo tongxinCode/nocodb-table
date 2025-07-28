@@ -3,11 +3,9 @@
     <el-table
       v-if="columns.length && records.length"
       :data="records"
-      style="width: 100%; height: 100vh"
-      :header-cell-style="{ background: theme === 'dark' ? '#222' : '#fff' }"
-      :cell-style="{ color: theme === 'dark' ? '#eee' : '#222' }"
       border
-      :default-sort="{ prop: columns[0]?.fieldName, order: 'ascending' }"
+      :default-sort="{ prop: columns[orderBy]?.fieldName, order: order }"
+      :fit="true"
     >
       <el-table-column
         v-for="col in columns"
@@ -26,7 +24,7 @@
       :total="total"
       layout="prev, pager, next"
       @current-change="handlePageChange"
-      style="margin: 16px auto; text-align: center;"
+      style="margin: 8px auto 0 auto; text-align: center;"
     />
   </div>
 </template>
@@ -41,11 +39,15 @@ const total = ref(0);
 const page = ref(1);
 const pageSize = ref(20);
 const theme = ref<'dark' | 'light'>('light');
+const orderBy = ref<number>(0);
+const order = ref<'ascending' | 'descending'>('ascending');
 
 async function fetchMeta(instance: any, config: any) {
   // 获取表字段元数据
   const { data } = await instance.get(`/meta/tables/${config.tableId}`);
-  columns.value = data.columns.filter((f:any) => f.system == 0).map((f: any) => ({
+  columns.value = data.columns
+  .filter((f:any) => (f.system == 0 || f.system == null) && f.column_name !== 'id')
+  .map((f: any) => ({
     fieldName: f.column_name,
     title: f.title || f.column_name
   }));
@@ -67,6 +69,8 @@ async function init() {
   const { instance, config } = await getAxiosInstance();
   pageSize.value = config.pageSize || 20;
   theme.value = config.theme || 'light';
+  orderBy.value = config.orderBy || 0;
+  order.value = config.order || 'ascending';
   await fetchMeta(instance, config);
   await fetchRecords(instance, config);
 }
@@ -82,3 +86,17 @@ onMounted(init);
 </script>
 
 <style src="./style.css"></style>
+<style scoped>
+.el-table {
+  width: 100%;
+  height: fit-content;
+  
+  font-size: 14px;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+
+  line-height: 1.5;
+  font-weight: 400;
+
+  text-align: center;
+}
+</style>

@@ -8,10 +8,15 @@
 2. dark、light两种主题可基于配置文件配置
 3. 分页大小可基于配置文件配置
 4. table字段基于meta数据动态构建 
+
     [meta api](https://nocodb.com/apis/v2/meta#tag/Tables/operation/db-table-read)
+
     [record api](https://nocodb.com/apis/v2/data#tag/Table-Records/operation/db-data-table-row-list)
 5. 表格样式默认全屏，字段宽度自适应
+
     [element-plus guide](https://element-plus.org/zh-CN/component/table.html)
+
+6. orderBy、order排序序号和升降序可基于配置文件配置
 
 ## 目录结构
 
