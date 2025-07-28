@@ -138,4 +138,39 @@ onMounted(init);
   word-break: break-all;
   line-height: 1.5;
 }
+
+.app-container.dark :deep(.el-table) {
+  --el-table-header-bg-color: #1e3e5d;
+  --el-table-header-text-color: #ffffff;
+  --el-table-text-color: ;
+  --el-table-row-hover-bg-color: #1e3e5d;
+  background-color: #606266;
+}
+
+.app-container.dark :deep(.el-table__row) {
+  color: #ffffff;
+  background-color: #606266;
+}
+
+.app-container.dark :deep(.el-table__row:hover td) {
+  color: #ffffff;
+  background-color: #1e3e5d;
+}
+
+.app-container.dark :deep(.el-table__header-wrapper) {
+  background-color: #1e3e5d;
+}
+
+.app-container.dark :deep(.el-table__header) {
+  color: #ffffff;
+  background-color: #1e3e5d;
+}
+
+.app-container.dark :deep(.el-table__body tr:hover > td) {
+  background-color: #1e3e5d20 !important;
+}
+
+.app-container.dark :deep(.el-table--enable-row-hover .el-table__body tr:hover > td) {
+  background-color: #1e3e5d20;
+}
 </style>

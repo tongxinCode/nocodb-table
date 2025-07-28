@@ -17,6 +17,7 @@
     [element-plus guide](https://element-plus.org/zh-CN/component/table.html)
 
 6. orderBy、order排序序号和升降序可基于配置文件配置
+7. leftAlign文字左对齐可基于配置文件配置（默认居中对齐）
 
 ## 目录结构
 
