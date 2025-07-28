@@ -14,9 +14,10 @@ export default defineConfig({
     proxy: {
       // 配置代理，一般在开发环境和后端联调时使用
       "/api": {
-        target: "http://localhost:8000",
+        target: "http://localhost:8080",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        // 不重写路径，保留/api前缀
+        // rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
