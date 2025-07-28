@@ -12,7 +12,7 @@
         :key="col.fieldName"
         :prop="col.fieldName"
         :label="col.title"
-        :min-width="120"
+        :min-width="col.minWidth"
         :align="leftAlign.includes(index) ? 'left' : 'center'"
       >
         <template #default="scope">
@@ -62,10 +62,27 @@ async function fetchMeta(instance: any, config: any) {
   const { data } = await instance.get(`/meta/tables/${config.tableId}`);
   columns.value = data.columns
   .filter((f:any) => (f.system == 0 || f.system == null) && f.column_name !== 'id')
-  .map((f: any) => ({
-    fieldName: f.column_name,
-    title: f.title || f.column_name
-  }));
+  .map((f: any) => {
+    let minWidth = 100;
+    const titleLength = (f.title || f.column_name).length;
+    
+    // 根据标题长度设置最小宽度
+    if (titleLength <= 4) {
+      minWidth = 80;
+    } else if (titleLength <= 8) {
+      minWidth = 120;
+    } else if (titleLength <= 12) {
+      minWidth = 160;
+    } else {
+      minWidth = 200;
+    }
+    
+    return {
+      fieldName: f.column_name,
+      title: f.title || f.column_name,
+      minWidth
+    };
+  });
 }
 
 async function fetchRecords(instance: any, config: any) {
@@ -106,6 +123,7 @@ onMounted(init);
 .el-table {
   width: 100%;
   height: fit-content;
+  table-layout: fixed;
 
   line-height: 1.5;
   font-weight: 400;
