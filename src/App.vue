@@ -18,13 +18,15 @@
     </el-table>
     <el-pagination
       v-if="total > pageSize"
-      background
-      :current-page="page"
-      :page-size="pageSize"
+      v-model:current-page="page"
+      v-model:page-size="pageSize"
+      :page-sizes="[10, 20, 50, 100]"
+      :background="true"
+      layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-      layout="prev, pager, next"
+      @size-change="handleSizeChange"
       @current-change="handlePageChange"
-      style="margin: 8px auto 0 auto; text-align: center;"
+      style="margin: 8px 0 0 auto; text-align: right; width: fit-content;"
     />
   </div>
 </template>
@@ -41,6 +43,14 @@ const pageSize = ref(20);
 const theme = ref<'dark' | 'light'>('light');
 const orderBy = ref<number>(0);
 const order = ref<'ascending' | 'descending'>('ascending');
+
+function handleSizeChange(val: number) {
+  pageSize.value = val;
+  page.value = 1;
+  getAxiosInstance().then(({ instance, config }) => {
+    fetchRecords(instance, config);
+  });
+}
 
 async function fetchMeta(instance: any, config: any) {
   // 获取表字段元数据
@@ -90,13 +100,8 @@ onMounted(init);
 .el-table {
   width: 100%;
   height: fit-content;
-  
-  font-size: 14px;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
 
   line-height: 1.5;
   font-weight: 400;
-
-  text-align: center;
 }
 </style>
