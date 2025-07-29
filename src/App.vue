@@ -89,7 +89,8 @@ async function fetchRecords(instance: any, config: any) {
   const { data } = await instance.get(`/tables/${config.tableId}/records`, {
     params: {
       offset: (page.value-1)*pageSize.value,
-      limit: pageSize.value
+      limit: pageSize.value,
+      viewId: config.viewId
     }
   });
   records.value = data.list;
