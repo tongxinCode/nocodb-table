@@ -4,19 +4,19 @@
       v-if="columns.length && records.length"
       :data="records"
       border
-      :default-sort="{ prop: columns[orderBy]?.fieldName, order: order }"
+      :default-sort="{ prop: columns[orderBy]?.title, order: order }"
       :fit="true"
     >
       <el-table-column
         v-for="(col, index) in columns"
-        :key="col.fieldName"
-        :prop="col.fieldName"
+        :key="col.title"
+        :prop="col.title"
         :label="col.title"
         :min-width="col.minWidth"
         :align="leftAlign.includes(index) ? 'left' : 'center'"
       >
         <template #default="scope">
-          <span class="cell-content">{{ scope.row[col.fieldName] }}</span>
+          <span class="cell-content">{{ scope.row[col.title] }}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -64,22 +64,21 @@ async function fetchMeta(instance: any, config: any) {
   .filter((f:any) => (f.system == 0 || f.system == null) && f.column_name !== 'id')
   .map((f: any) => {
     let minWidth = 100;
-    const titleLength = (f.title || f.column_name).length;
+    const titleLength = f.title.length;
     
     // 根据标题长度设置最小宽度
-    if (titleLength <= 4) {
+    if (titleLength <= 2) {
       minWidth = 80;
-    } else if (titleLength <= 8) {
+    } else if (titleLength <= 4) {
       minWidth = 120;
-    } else if (titleLength <= 12) {
+    } else if (titleLength <= 6) {
       minWidth = 160;
     } else {
       minWidth = 200;
     }
     
     return {
-      fieldName: f.column_name,
-      title: f.title || f.column_name,
+      title: f.title,
       minWidth
     };
   });
